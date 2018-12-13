@@ -42,6 +42,9 @@ namespace Falabella.Models
 
         public string DocumentoId { get; set; }
         
+        [Display(Name ="Tipo de documento")]
+        public string NombreTipoDocumento { get; set; }
+
         public string Documento { get; set; }
 
         [Display(Name ="Teléfono")]

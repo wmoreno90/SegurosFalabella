@@ -250,6 +250,7 @@
     <Content Include="Views\SegurosFalabella\InsProduct.cshtml" />
     <Content Include="Views\SegurosFalabella\GetProducts.cshtml" />
     <Content Include="Views\SegurosFalabella\InsClient.cshtml" />
+    <Content Include="Views\SegurosFalabella\GetClients.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

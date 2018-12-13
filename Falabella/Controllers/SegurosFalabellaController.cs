@@ -209,6 +209,65 @@ namespace Falabella.Controllers
             return RedirectToAction("InsClient");
         }
 
+        public ActionResult GetClients()
+        {
+            var db = new SegurosFalabellaEntities();
+
+            var productos = db.PRODUCTOS.ToList();
+            var aseguradoras = db.ASEGURADORAS.ToList();
+            var documentos = db.DOCUMENTOS.ToList();
+            var clientes = db.CLIENTES.ToList();
+
+            var listaClientes = new List<ClientesViewModel>();
+
+            foreach(var item in clientes)
+            {
+                var cliente = new ClientesViewModel()
+                {
+                    PrimerNombre = item.PRIMER_NOMBRE,
+                    SegundoNombre = item.SEGUNDO_NOMBRE,
+                    PrimerApellido = item.PRIMER_APELLIDO,
+                    SegundoApellido = item.SEGUNDO_APELLIDO,
+                    NombreTipoDocumento = GetTipoDocumento(item.TIPO_DOCUMENTO, documentos),
+                    Documento = item.DOCUMENTO,
+                    Telefono = item.TELEFONO,
+                    NombreProducto = GetNombreProducto(item.PRODUCTO_ID, productos),
+                    NombreAseguradora = GetNombreAseguradora(item.ASEGURADORA_ID, aseguradoras)
+                };
+
+                listaClientes.Add(cliente);
+            }
+
+            return View(listaClientes);
+
+        }
+
+        private string GetNombreProducto(int id, List<PRODUCTOS> productos)
+        {
+            foreach (var item in productos)
+            {
+                if (item.PRODUCTO_ID == id)
+                {
+                    return item.PRODUCTO;
+                }
+            }
+
+            return string.Format("Producto no identificado");
+        }
+
+        private string GetTipoDocumento(int id, List<DOCUMENTOS> documentos)
+        {
+            foreach (var item in documentos)
+            {
+                if (item.DOCUMENTO_ID == id)
+                {
+                    return item.NOMBRE;
+                }
+            }
+
+            return string.Format("Tipo de documento no identificado");
+        }
+
         private int GetIdAseguradora(int id, List<PRODUCTOS> productos)
         {
             foreach(var item in productos)
