@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SegurosFalabellaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ASEGURADORAS">
+    <Key>
+      <PropertyRef Name="ASEGURADORA_ID" />
+    </Key>
+    <Property Name="ASEGURADORA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CLIENTES" Relationship="Self.FK__CLIENTES__ASEGUR__5165187F" FromRole="ASEGURADORAS" ToRole="CLIENTES" />
+    <NavigationProperty Name="PRODUCTOS" Relationship="Self.FK__PRODUCTOS__ASEGU__4BAC3F29" FromRole="ASEGURADORAS" ToRole="PRODUCTOS" />
+  </EntityType>
+  <EntityType Name="CLIENTES">
+    <Key>
+      <PropertyRef Name="CLIENTE_ID" />
+    </Key>
+    <Property Name="CLIENTE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PRODUCTO_ID" Type="Int32" Nullable="false" />
+    <Property Name="ASEGURADORA_ID" Type="Int32" Nullable="false" />
+    <Property Name="PRIMER_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SEGUNDO_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PRIMER_APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SEGUNDO_APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TIPO_DOCUMENTO" Type="Int32" Nullable="false" />
+    <Property Name="DOCUMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ASEGURADORAS" Relationship="Self.FK__CLIENTES__ASEGUR__5165187F" FromRole="CLIENTES" ToRole="ASEGURADORAS" />
+    <NavigationProperty Name="PRODUCTOS" Relationship="Self.FK__CLIENTES__PRODUC__5070F446" FromRole="CLIENTES" ToRole="PRODUCTOS" />
+    <NavigationProperty Name="DOCUMENTOS" Relationship="Self.FK__CLIENTES__TIPO_D__52593CB8" FromRole="CLIENTES" ToRole="DOCUMENTOS" />
+  </EntityType>
+  <EntityType Name="DOCUMENTOS">
+    <Key>
+      <PropertyRef Name="DOCUMENTO_ID" />
+    </Key>
+    <Property Name="DOCUMENTO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CLIENTES" Relationship="Self.FK__CLIENTES__TIPO_D__52593CB8" FromRole="DOCUMENTOS" ToRole="CLIENTES" />
+  </EntityType>
+  <EntityType Name="PRODUCTOS">
+    <Key>
+      <PropertyRef Name="PRODUCTO_ID" />
+    </Key>
+    <Property Name="PRODUCTO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ASEGURADORA_ID" Type="Int32" Nullable="false" />
+    <Property Name="PRODUCTO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PRIMA" Type="Int32" Nullable="false" />
+    <Property Name="COBERTURA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ASISTENCIAS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ASEGURADORAS" Relationship="Self.FK__PRODUCTOS__ASEGU__4BAC3F29" FromRole="PRODUCTOS" ToRole="ASEGURADORAS" />
+    <NavigationProperty Name="CLIENTES" Relationship="Self.FK__CLIENTES__PRODUC__5070F446" FromRole="PRODUCTOS" ToRole="CLIENTES" />
+  </EntityType>
+  <Association Name="FK__CLIENTES__ASEGUR__5165187F">
+    <End Role="ASEGURADORAS" Type="Self.ASEGURADORAS" Multiplicity="1" />
+    <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ASEGURADORAS">
+        <PropertyRef Name="ASEGURADORA_ID" />
+      </Principal>
+      <Dependent Role="CLIENTES">
+        <PropertyRef Name="ASEGURADORA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PRODUCTOS__ASEGU__4BAC3F29">
+    <End Role="ASEGURADORAS" Type="Self.ASEGURADORAS" Multiplicity="1" />
+    <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ASEGURADORAS">
+        <PropertyRef Name="ASEGURADORA_ID" />
+      </Principal>
+      <Dependent Role="PRODUCTOS">
+        <PropertyRef Name="ASEGURADORA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CLIENTES__PRODUC__5070F446">
+    <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+    <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTOS">
+        <PropertyRef Name="PRODUCTO_ID" />
+      </Principal>
+      <Dependent Role="CLIENTES">
+        <PropertyRef Name="PRODUCTO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CLIENTES__TIPO_D__52593CB8">
+    <End Role="DOCUMENTOS" Type="Self.DOCUMENTOS" Multiplicity="1" />
+    <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTOS">
+        <PropertyRef Name="DOCUMENTO_ID" />
+      </Principal>
+      <Dependent Role="CLIENTES">
+        <PropertyRef Name="TIPO_DOCUMENTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SegurosFalabellaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ASEGURADORAS" EntityType="Self.ASEGURADORAS" />
+    <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" />
+    <EntitySet Name="DOCUMENTOS" EntityType="Self.DOCUMENTOS" />
+    <EntitySet Name="PRODUCTOS" EntityType="Self.PRODUCTOS" />
+    <AssociationSet Name="FK__CLIENTES__ASEGUR__5165187F" Association="Self.FK__CLIENTES__ASEGUR__5165187F">
+      <End Role="ASEGURADORAS" EntitySet="ASEGURADORAS" />
+      <End Role="CLIENTES" EntitySet="CLIENTES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PRODUCTOS__ASEGU__4BAC3F29" Association="Self.FK__PRODUCTOS__ASEGU__4BAC3F29">
+      <End Role="ASEGURADORAS" EntitySet="ASEGURADORAS" />
+      <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CLIENTES__PRODUC__5070F446" Association="Self.FK__CLIENTES__PRODUC__5070F446">
+      <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+      <End Role="CLIENTES" EntitySet="CLIENTES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CLIENTES__TIPO_D__52593CB8" Association="Self.FK__CLIENTES__TIPO_D__52593CB8">
+      <End Role="DOCUMENTOS" EntitySet="DOCUMENTOS" />
+      <End Role="CLIENTES" EntitySet="CLIENTES" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

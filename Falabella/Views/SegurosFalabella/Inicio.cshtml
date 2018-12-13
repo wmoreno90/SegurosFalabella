@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Seguros Falabella";
+}
+<div>
+    <div class="page-header">
+        <h1>@ViewBag.Title</h1>
+    </div>
+
+    <div class="panel-primary jumbotron">
+        <div class="panel-heading">
+            Bienvenido a la plataforma de administración de Seguros Falabella, aquí encontrará lo necesario para administrar
+            las compañías aseguradoras aliadas, así como sus productos disponibles y los clientes registrados.
+        </div>
+        <div class="panel-body">
+            <h3><b>Seleccione la acción que desea realizar</b></h3>
+            <br />
+            <h4>Acciones de inserción</h4>
+
+            <div class="row">
+                <a href="/SegurosFalabella/InsCompany" class="btn btn-primary">Agregar una compañía</a>
+                <a href="/SegurosFalabella/InsProduct" class="btn btn-primary">Agregar productos</a>
+                <a href="/SegurosFalabella/InsClient" class="btn btn-primary">Agregar clientes</a>
+            </div>
+
+            <br />
+            <h4>Acciones de visualización</h4>
+            <div class="row">
+                <a href="/SegurosFalabella/GetCompanies" class="btn btn-primary">Ver compañías aliadas</a>
+                <a href="/SegurosFalabella/GetProducts" class="btn btn-primary">Ver productos</a>
+                <a href="/SegurosFalabella/GetClients" class="btn btn-primary">Ver clientes</a>
+            </div>
+        </div>
+    </div>
+</div>
