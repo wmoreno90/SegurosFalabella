@@ -200,6 +200,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Logo.PNG" />
     <Content Include="Models\SegurosFalabella.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SegurosFalabella.Context.cs</LastGenOutput>
@@ -233,6 +234,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\SegurosFalabella\InsClient.js" />
+    <Content Include="Scripts\SegurosFalabella\InsCompany.js" />
+    <Content Include="Scripts\SegurosFalabella\InsProduct.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -251,6 +255,9 @@
     <Content Include="Views\SegurosFalabella\GetProducts.cshtml" />
     <Content Include="Views\SegurosFalabella\InsClient.cshtml" />
     <Content Include="Views\SegurosFalabella\GetClients.cshtml" />
+    <Content Include="Views\SegurosFalabella\EditCompany.cshtml" />
+    <Content Include="Views\SegurosFalabella\EditProduct.cshtml" />
+    <Content Include="Views\SegurosFalabella\EditClient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

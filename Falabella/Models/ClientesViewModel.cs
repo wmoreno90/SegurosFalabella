@@ -10,11 +10,11 @@ namespace Falabella.Models
     public class ClientesViewModel
     {
         public int Id { get; set; }
-
-        [Required]
+        
         [Display(Name = "Compañía aseguradora")]
         public IEnumerable<SelectListItem> Producto { get; set; }
 
+        [Required]
         [Display(Name ="Producto")]
         public string ProductoId { get; set; }
 
@@ -31,6 +31,7 @@ namespace Falabella.Models
         [Display(Name = "Segundo nombre")]
         public string SegundoNombre { get; set; }
 
+        [Required]
         [Display(Name = "Primer apellido")]
         public string PrimerApellido { get; set; }
 
@@ -40,13 +41,17 @@ namespace Falabella.Models
         [Display(Name =("Tipo de documento"))]
         public IEnumerable<SelectListItem> TipoDocumento { get; set; }
 
+        [Required]
+        [Display(Name =("Tipo de documento"))]
         public string DocumentoId { get; set; }
         
         [Display(Name ="Tipo de documento")]
         public string NombreTipoDocumento { get; set; }
 
+        [Required]
         public string Documento { get; set; }
 
+        [Required]
         [Display(Name ="Teléfono")]
         public string Telefono { get; set; }
 

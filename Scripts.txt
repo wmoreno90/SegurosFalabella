@@ -1,0 +1,54 @@
+--DDL
+
+create database SegurosFalabella
+go
+
+use SegurosFalabella
+go
+
+create table ASEGURADORAS
+(
+ASEGURADORA_ID int not null primary key,
+NOMBRE varchar(100) not null
+)
+go
+
+create table PRODUCTOS
+(
+PRODUCTO_ID int not null primary key,
+ASEGURADORA_ID int not null references ASEGURADORAS,
+PRODUCTO varchar(200) not null,
+PRIMA int not null,
+COBERTURA varchar(max) not null,
+ASISTENCIAS varchar(max) not null
+)
+go
+
+create table DOCUMENTOS
+(
+DOCUMENTO_ID int not null primary key,
+NOMBRE varchar(50)
+)
+go
+
+create table CLIENTES
+(
+CLIENTE_ID int not null primary key,
+PRODUCTO_ID int not null references PRODUCTOS,
+ASEGURADORA_ID int not null references ASEGURADORAS,
+PRIMER_NOMBRE varchar(50) not null,
+SEGUNDO_NOMBRE varchar(50),
+PRIMER_APELLIDO varchar(50) not null,
+SEGUNDO_APELLIDO varchar(50),
+TIPO_DOCUMENTO int not null references DOCUMENTOS,
+DOCUMENTO varchar(50),
+TELEFONO varchar(50)
+)
+go
+
+--/////////////////////////////////////////////////////////////////////////////////
+--DML
+
+insert into DOCUMENTOS (NOMBRE) values ('Cédula de ciudadanía')
+insert into DOCUMENTOS (NOMBRE) values ('Cédula de extranjería')
+insert into DOCUMENTOS (NOMBRE) values ('Tarjeta de identidad')

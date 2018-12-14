@@ -24,9 +24,6 @@
             @Html.DisplayNameFor(model => model.SegundoApellido)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DocumentoId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.NombreTipoDocumento)
         </th>
         <th>
@@ -59,9 +56,6 @@
             @Html.DisplayFor(modelItem => item.SegundoApellido)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DocumentoId)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.NombreTipoDocumento)
         </td>
         <td>
@@ -77,8 +71,8 @@
             @Html.DisplayFor(modelItem => item.NombreAseguradora)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            @Html.ActionLink("Editar", "EditClient", new { id = item.Id }) |
+            @Html.ActionLink("Eliminar", "DeleteClient", new { id = item.Id })
         </td>
     </tr>
 }
